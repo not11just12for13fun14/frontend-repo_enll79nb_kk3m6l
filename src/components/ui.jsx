@@ -1,13 +1,13 @@
 export function Card({ className = '', children }) {
-  return <div className={`bg-white rounded-2xl border border-slate-200 shadow-sm ${className}`}>{children}</div>
+  return <div className={`bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm ${className}`}>{children}</div>
 }
 
 export function CardHeader({ title, subtitle, actions }) {
   return (
-    <div className="p-5 border-b border-slate-200 flex items-center justify-between">
+    <div className="p-5 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
       <div>
-        <h3 className="text-slate-900 font-semibold">{title}</h3>
-        {subtitle && <p className="text-sm text-slate-500 mt-1">{subtitle}</p>}
+        <h3 className="text-slate-900 dark:text-white font-semibold">{title}</h3>
+        {subtitle && <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{subtitle}</p>}
       </div>
       {actions}
     </div>
@@ -22,7 +22,7 @@ export function Button({ children, variant = 'primary', className = '', ...props
   const styles = {
     primary: 'bg-[#1E88E5] text-white hover:bg-[#1876c5]',
     secondary: 'bg-[#0D47A1] text-white hover:bg-[#0b3d8e]',
-    outline: 'border border-slate-300 text-slate-700 hover:bg-slate-50',
+    outline: 'border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50',
   }
   return (
     <button
@@ -37,9 +37,9 @@ export function Button({ children, variant = 'primary', className = '', ...props
 export function Input({ label, error, ...props }) {
   return (
     <label className="block">
-      {label && <span className="text-sm text-slate-700 mb-1 block">{label}</span>}
+      {label && <span className="text-sm text-slate-700 dark:text-slate-300 mb-1 block">{label}</span>}
       <input
-        className={`w-full h-10 px-3 rounded-xl border ${error ? 'border-rose-400' : 'border-slate-300'} focus:outline-none focus:ring-2 focus:ring-[#1E88E5]/30`}
+        className={`w-full h-10 px-3 rounded-xl border bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 ${error ? 'border-rose-400' : 'border-slate-300 dark:border-slate-600'} focus:outline-none focus:ring-2 focus:ring-[#1E88E5]/30`}
         {...props}
       />
       {error && <span className="text-xs text-rose-500 mt-1 block">{error}</span>}
@@ -50,9 +50,9 @@ export function Input({ label, error, ...props }) {
 export function Select({ label, error, children, ...props }) {
   return (
     <label className="block">
-      {label && <span className="text-sm text-slate-700 mb-1 block">{label}</span>}
+      {label && <span className="text-sm text-slate-700 dark:text-slate-300 mb-1 block">{label}</span>}
       <select
-        className={`w-full h-10 px-3 rounded-xl border bg-white ${error ? 'border-rose-400' : 'border-slate-300'} focus:outline-none focus:ring-2 focus:ring-[#1E88E5]/30`}
+        className={`w-full h-10 px-3 rounded-xl border bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 ${error ? 'border-rose-400' : 'border-slate-300 dark:border-slate-600'} focus:outline-none focus:ring-2 focus:ring-[#1E88E5]/30`}
         {...props}
       >
         {children}
@@ -66,10 +66,10 @@ export function Modal({ open, onClose, title, children }) {
   if (!open) return null
   return (
     <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl w-full max-w-lg shadow-xl">
-        <div className="p-4 border-b border-slate-200 flex items-center justify-between">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl w-full max-w-lg shadow-xl">
+        <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
           <h3 className="font-semibold">{title}</h3>
-          <button className="text-slate-500 hover:text-slate-900" onClick={onClose}>✕</button>
+          <button className="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white" onClick={onClose}>✕</button>
         </div>
         <div className="p-4">{children}</div>
       </div>
@@ -84,11 +84,11 @@ export function Table({ columns = [], data = [], renderRow }) {
         <thead>
           <tr>
             {columns.map((c) => (
-              <th key={c} className="text-left px-4 py-3 font-medium text-slate-500">{c}</th>
+              <th key={c} className="text-left px-4 py-3 font-medium text-slate-500 dark:text-slate-400">{c}</th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-100">
+        <tbody className="divide-y divide-slate-100 dark:divide-slate-700/60">
           {data.map((row) => renderRow(row))}
         </tbody>
       </table>
